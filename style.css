@@ -1,7 +1,17 @@
 body{
     min-height: 100vh;
+    padding:0;
+    margin:0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#f8f1f1;
+    background-image: url(/images/bg1.jpg);
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.container{
+    background-color:rgb(0,0,0);
+    padding:4em;
 }
