@@ -3,6 +3,9 @@ const bodyBgColor = document.querySelector(".neutral");
 const startBtn = document.getElementById("start-btn");
 const nextBtn = document.getElementById("next-btn");
 const cardContainer = document.getElementById("cardContainer");
+let scoreValue = document.getElementById("value");
+var value = 0;
+var currentValue = 0;
 
 // const nextBtn = document.getElementById("next-btn");
 // const cardContainer = documnet.querySelector("#cardContainer");
@@ -51,6 +54,7 @@ function showQuestion(currentQuestion) {
     // checking the correctness of an answer
     if (answer.correct) {
       button.dataset.correct = answer.correct;
+      scoreValue.innerText;
     }
     button.addEventListener("click", selectAnswer);
     answerButtonsElement.appendChild(button);
@@ -61,38 +65,13 @@ function resetGameState() {
   // hiding the next Button
   // clearStatusClass(docoument.body);
   nextBtn.classList.add("hide");
+  // scoreValue.innerText = currentValue;
 
   // as long as there is a childElement attached for a answer btn, then we will remove it, hence we will use 'firstChild'
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
 }
-
-// function showQuestion(someQuestion) {
-//   questionTitle.innerText = someQuestion.question;
-//   questionTitle.style.color = "#33333";
-//   questionTitle.style.transform = "uppercase";
-
-//   // generating possible answers
-//   someQuestion.answers.forEach(answerButton => {
-//     console.log("1");
-//     const button = document.createElement("button");
-//     console.log("2");
-
-//     button.innerText = answerButton.text;
-//     console.log("3");
-
-//     button.classList.add("btn");
-//     console.log("4");
-
-//     if (answerButton.correct) {
-//       button.dataset.correct = answerButton.correct;
-//     }
-//     button.addEventListener("click", selectAnswer);
-//     // adding the posssible answers for the given question
-//     answerButton.appendChild(button);
-//   });
-// }
 
 function selectAnswer(e) {
   // selecting our answer
@@ -108,18 +87,30 @@ function selectAnswer(e) {
     nextBtn.classList.remove("hide");
   } else {
     startBtn.innerText = "Restart";
+    startBtn.addEventListener("click", function() {
+      // value = 0;
+      currentValue = 0;
+      scoreValue.innerText = 0;
+    });
     startBtn.classList.remove("hide");
   }
 }
 
 function setStatusClass(element, correct) {
   clearStatusClass(element);
+  // scoreValue.innerHTML = 0;
   if (correct) {
+    // currentValue += 1;
     element.classList.add("correct");
+    // value++;
+    scoreValue.innerText = Number(++currentValue);
     // clearStatusClass();
   } else {
+    // currentValue -= 1;
     element.classList.add("incorrect");
+    scoreValue.innerText = Number(--currentValue);
   }
+  // value++;
 }
 
 // clearing the status of the answer
@@ -163,8 +154,10 @@ const questions = [
   {
     question: "which animal is best for nuca",
     answers: [
-      { text: "Cat", correct: true },
-      { text: "Dog", correct: true }
+      { text: "Cat", correct: false },
+      { text: "Dog", correct: false },
+      { text: "All the above", correct: true },
+      { text: "All the above", correct: false }
     ]
   }
 ];
