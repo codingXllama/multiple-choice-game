@@ -4,7 +4,6 @@ const startBtn = document.getElementById("start-btn");
 const nextBtn = document.getElementById("next-btn");
 const cardContainer = document.getElementById("cardContainer");
 let scoreValue = document.getElementById("value");
-var value = 0;
 var currentValue = 0;
 
 // const nextBtn = document.getElementById("next-btn");
@@ -40,13 +39,12 @@ function startGame() {
 function setNextQuestion() {
   resetGameState();
   showQuestion(shuffledQuestion[currentQuestionIndex]);
-
-  // alert("A new question has been made");
 }
 
 function showQuestion(currentQuestion) {
   // resetGameState();
   questionElement.innerText = currentQuestion.question;
+  // alert(questions.answers);
   currentQuestion.answers.forEach(answer => {
     const button = document.createElement("button");
     button.innerText = answer.text;
@@ -54,8 +52,9 @@ function showQuestion(currentQuestion) {
     // checking the correctness of an answer
     if (answer.correct) {
       button.dataset.correct = answer.correct;
-      scoreValue.innerText;
+      // scoreValue.innerText = Number();
     }
+    // scoreValue.innerText = Number(--currentValue);
     button.addEventListener("click", selectAnswer);
     answerButtonsElement.appendChild(button);
   });
@@ -77,7 +76,9 @@ function selectAnswer(e) {
   // selecting our answer
   const selectedBtn = e.target;
   const correct = selectedBtn.dataset.correct;
-  setStatusClass(document.body, correct);
+  // calling the updatMethod to check the status of the score , if it's 'true' then we will update the score, if not we will decrement the score
+  updateScore(correct);
+  // setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct);
   });
@@ -88,7 +89,7 @@ function selectAnswer(e) {
   } else {
     startBtn.innerText = "Restart";
     startBtn.addEventListener("click", function() {
-      // value = 0;
+      // resetting the score
       currentValue = 0;
       scoreValue.innerText = 0;
     });
@@ -96,21 +97,39 @@ function selectAnswer(e) {
   }
 }
 
+function updateScore(isCorrect) {
+  if (isCorrect) {
+    currentValue += 1;
+  } else {
+    currentValue -= 1;
+  }
+}
+
 function setStatusClass(element, correct) {
   clearStatusClass(element);
+  // updateScore(correct);
   // scoreValue.innerHTML = 0;
   if (correct) {
     // currentValue += 1;
     element.classList.add("correct");
-    // value++;
-    scoreValue.innerText = Number(++currentValue);
-    // clearStatusClass();
+    // scoreValue.innerText = Number(++currentValue);
   } else {
-    // currentValue -= 1;
     element.classList.add("incorrect");
+    // setScore("-1");
+    // currentValue -= 1;
+    // scoreValue.innerText = Number((currentValue -= 1));
+    // scoreValue.innerText = Number(--currentValue);
+  }
+  scoreValue.innerText = Number(currentValue);
+}
+
+function setScore(status) {
+  console.log("in socreSetter");
+  if (status === "+1") {
+    scoreValue.innerText = Number(++currentValue);
+  } else {
     scoreValue.innerText = Number(--currentValue);
   }
-  // value++;
 }
 
 // clearing the status of the answer
@@ -130,34 +149,34 @@ const questions = [
     ]
   },
   {
-    question: "who is better looking",
+    question: "what is 2/2 ?",
     answers: [
-      { text: "Nuca", correct: true },
-      { text: "Osa", correct: false }
+      { text: "1", correct: true, score: 1 },
+      { text: "0", correct: false }
     ]
   },
   {
-    question: "what is nuca's favorite food",
+    question: "what is 2-2 ?",
     answers: [
-      { text: "pizza", correct: false },
-      { text: "chorBah", correct: true }
+      { text: "0", correct: true },
+      { text: "22", correct: false }
     ]
   },
   {
-    question: "Who would win in soccer, iraq or bosnia",
+    question: "what is 2*2 ?",
     answers: [
-      { text: "Iraq", correct: false },
-      { text: "Bosnia", correct: false },
-      { text: "No one cares", correct: true }
+      { text: "4", correct: true },
+      { text: "4.10", correct: false },
+      { text: "No one cares", correct: false }
     ]
   },
   {
-    question: "which animal is best for nuca",
+    question: "what is (2+2)/4",
     answers: [
-      { text: "Cat", correct: false },
-      { text: "Dog", correct: false },
-      { text: "All the above", correct: true },
-      { text: "All the above", correct: false }
+      { text: "0", correct: false },
+      { text: "2", correct: false },
+      { text: "None of the above", correct: false },
+      { text: "1", correct: true }
     ]
   }
 ];
