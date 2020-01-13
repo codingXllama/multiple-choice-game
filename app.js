@@ -41,9 +41,10 @@ function setNextQuestion() {
   // alert("A new question has been made");
 }
 
-function showQuestion(question) {
-  questionElement.innerText = question.q1;
-  question.answers.forEach(answer => {
+function showQuestion(currentQuestion) {
+  // resetGameState();
+  questionElement.innerText = currentQuestion.question;
+  currentQuestion.answers.forEach(answer => {
     const button = document.createElement("button");
     button.innerText = answer.text;
     button.classList.add("btn");
@@ -58,6 +59,7 @@ function showQuestion(question) {
 
 function resetGameState() {
   // hiding the next Button
+  // clearStatusClass(docoument.body);
   nextBtn.classList.add("hide");
 
   // as long as there is a childElement attached for a answer btn, then we will remove it, hence we will use 'firstChild'
@@ -106,7 +108,7 @@ function selectAnswer(e) {
     nextBtn.classList.remove("hide");
   } else {
     startBtn.innerText = "Restart";
-    startButton.classList.remove("hide");
+    startBtn.classList.remove("hide");
   }
 }
 
@@ -116,7 +118,7 @@ function setStatusClass(element, correct) {
     element.classList.add("correct");
     // clearStatusClass();
   } else {
-    element.classList.add("wrong");
+    element.classList.add("incorrect");
   }
 }
 
@@ -130,39 +132,39 @@ function clearStatusClass(element) {
 
 const questions = [
   {
-    q1: "What is 2+2",
+    question: "What is 2+2",
     answers: [
       { text: "4", correct: true },
       { text: "22", correct: false }
     ]
   },
   {
-    q2: "who is better looking",
+    question: "who is better looking",
     answers: [
       { text: "Nuca", correct: true },
       { text: "Osa", correct: false }
     ]
   },
   {
-    q3: "what is nuca's favorite food",
+    question: "what is nuca's favorite food",
     answers: [
       { text: "pizza", correct: false },
       { text: "chorBah", correct: true }
     ]
   },
   {
-    q4: "Who would win in soccer, iraq or bosnia",
+    question: "Who would win in soccer, iraq or bosnia",
     answers: [
-      { text: "Nuca", correct: false },
-      { text: "Osa", correct: false },
+      { text: "Iraq", correct: false },
+      { text: "Bosnia", correct: false },
       { text: "No one cares", correct: true }
     ]
   },
   {
-    q5: "who is better looking",
+    question: "which animal is best for nuca",
     answers: [
-      { text: "Nuca", correct: true },
-      { text: "Osa", correct: true }
+      { text: "Cat", correct: true },
+      { text: "Dog", correct: true }
     ]
   }
 ];
