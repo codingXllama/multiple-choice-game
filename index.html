@@ -7,24 +7,20 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Nuca Quiz</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-
     </head>
 
-    <body>
-        <div class="bgImage">
-            <!-- <p>hello</p> -->
-        </div>
-        <div class="container">
+    <body class='neutral'>
+        <div class="container enable" id="cardContainer">
 
             <!-- this section contains all the content for the question title, and possible solutions for the question -->
             <div id="question-container" class="hide">
                 <!-- the question title -->
-                <div id="questionTitle">A Question</div>
+                <div id="question">A Question</div>
                 <!-- creating the section for the possible answers for the question -->
-                <div id="answerOptions" class="btn-grid">
-                    <button class="btn">Answer 1 </button>
-                    <button class="btn">Answer 2</button>
-                    <button class="btn">Answer 3</button>
+                <div id="answer-buttons" class="btn-grid">
+                    <button class="btn ">yes </button>
+                    <button class="btn ">no</button>
+                    <button class="btn ">Answer 3</button>
                     <button class="btn">Answer 4</button>
                 </div>
             </div>
@@ -35,6 +31,8 @@
             </div>
         </div>
 
+
+        <script src="/app.js"></script>
     </body>
 
 </html>
