@@ -10,9 +10,16 @@
         <!-- <script src="/app.js"></script> -->
     </head>
 
-    <body class='neutral'>
-        <div class="container enable" id="cardContainer">
+    <body class=''>
 
+        <div class="container enable" id="cardContainer">
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>YAY YOU WIN!!</p>
+                </div>
+            </div>
+            <!-- wrapping the enitre question-container with a modal class -->
 
             <!-- this section contains all the content for the question title, and possible solutions for the question -->
             <div id="question-container" class="hide">
@@ -26,13 +33,17 @@
                     <button class="btn">Answer 4</button>
                 </div>
                 <div id=score>Score :<span id="value">0</span></div>
+
             </div>
+
 
             <!-- the start and stop options -->
             <div class="controls">
                 <button id="start-btn" class="start-btn btn">Start</button>
                 <button id="next-btn" class="next-btn btn hide">Next</button>
             </div>
+            <!-- end of modal class -->
+
         </div>
 
 

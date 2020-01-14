@@ -30,6 +30,52 @@ body{
 }
 
 
+/* styling the modal class */
+
+
+.modal{
+    display:none;
+    /* position: fixed; */
+    z-index: 1;
+    left:0;
+    top:5rem;
+    width:50%;
+    min-width:100%;
+    min-height: 50vh;
+    overflow: auto;
+    background-color:rgba(0,0,0,0.4);
+    border:1px solid red;
+}
+
+
+/* modal content box */
+.modal-content{
+    background: #ffeeff;
+    margin:15% auto;
+    /* change the padding later */
+    padding:2.5rem;
+    border: 1px solid #888;
+    width:80%;
+}
+
+.close{
+    color:#aaa;
+    float: right;
+    font-size:28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus{
+    color:black;
+    text-decoration:none;
+    cursor: pointer;
+}
+
+
+
+
+
 /* the correnct hue we will use classes to enable a correct hue color */
 body.correct{
     --hue:var(--hue-correct);
@@ -121,7 +167,8 @@ body.incorrect{
 
 .container.enable{
     
-    width:10%;
+    width:50%;
+    max-width: 50%;
     background-image:-webkit-linear-gradient(55deg,#1a6ac5cb 50%, #f7c845 50%);
 }
 
