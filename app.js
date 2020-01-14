@@ -1,13 +1,26 @@
 const yesBtn = document.querySelector(".btn");
-const bodyBgColor = document.querySelector(".neutral");
-const startBtn = document.getElementById("start-btn");
+let bodyBgColor = document.querySelector(".neutral");
+let startBtn = document.getElementById("start-btn");
 const nextBtn = document.getElementById("next-btn");
 const cardContainer = document.getElementById("cardContainer");
+const scoreText = document.getElementById("score");
+const myBody = document.getElementById("myBody");
 let scoreValue = document.getElementById("value");
 var currentValue = 0;
 
-// const nextBtn = document.getElementById("next-btn");
-// const cardContainer = documnet.querySelector("#cardContainer");
+// Declaring the variables to select the required tags for the MODAL class - celebration screen
+var winningModal = document.getElementById("winningModal");
+
+//getting th ebutton that opens the modal
+var modalBtn = document.getElementById("modalBtn");
+
+// Getting the <span> element that closes the modal
+var closeModal = document.getElementsByClassName("close")[0];
+
+// triggering an event whent he user clicks on the modal btn, so we can open the modal
+// modalBtn.onclick = function() {
+//   winningModal.style.display = "block";
+// };
 
 const qsnContainerElement = document.getElementById("question-container");
 let shuffledQuestion, currentQuestionIndex;
@@ -25,7 +38,9 @@ nextBtn.addEventListener("click", () => {
 function startGame() {
   // alert("The game has started");
   // hiding the start btn
+  myBody.classList.add("inGameBg");
   startBtn.classList.add("hide");
+  // bodyBgColor.style.backgroundColor = "red";
   cardContainer.classList.remove("enable");
   shuffledQuestion = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
@@ -87,8 +102,22 @@ function selectAnswer(e) {
     // showing the nextBtn
     nextBtn.classList.remove("hide");
   } else {
+    winningModal.style.display = "block";
+    questionElement.classList.add("hide");
+    scoreText.classList.add("hide");
+    answerButtonsElement.classList.add("hide");
     startBtn.innerText = "Restart";
+    scoreValue.classList.add("hide");
+
+    // creating the functionality for the restart btn when it's clicked
     startBtn.addEventListener("click", function() {
+      // hidinig the modal class
+      winningModal.style.display = "none";
+      questionElement.classList.remove("hide");
+      answerButtonsElement.classList.remove("hide");
+      scoreValue.classList.remove("hide");
+      scoreText.classList.remove("hide");
+
       // resetting the score
       currentValue = 0;
       scoreValue.innerText = 0;
@@ -142,17 +171,18 @@ function clearStatusClass(element) {
 
 const questions = [
   {
-    question: "What is 2+2",
+    question: "How many years have and Osa and Nuca been together?",
     answers: [
       { text: "4", correct: true },
-      { text: "22", correct: false }
+      { text: "2", correct: false },
+      { text: "idk and idc", correct: false }
     ]
   },
   {
-    question: "what is 2/2 ?",
+    question: "Who is prettier, Osa or Nuca?",
     answers: [
-      { text: "1", correct: true, score: 1 },
-      { text: "0", correct: false }
+      { text: "Osa", correct: false, score: 1 },
+      { text: "Nuca", correct: true }
     ]
   },
   {

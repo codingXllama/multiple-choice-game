@@ -36,6 +36,8 @@ body{
 .modal{
     display:none;
     /* position: fixed; */
+        -webkit-filter: blur(1px);
+  filter: blur(0px);
     z-index: 1;
     left:0;
     top:5rem;
@@ -43,23 +45,34 @@ body{
     min-width:100%;
     min-height: 50vh;
     overflow: auto;
-    background-color:rgba(0,0,0,0.4);
-    border:1px solid red;
+    background-image: url(/images/bg2.jpg);
+    background-position: center;
+    background-repeat:no-repeat;
+    background-color:rgba(0, 0, 0, 0.041);
+
+    /* border:1px solid red; */
 }
 
+.inGameBg{
+        background-image:-webkit-linear-gradient(5deg,#1a6ac5cb 30%, #f7c845 70%);
+
+}
 
 /* modal content box */
 .modal-content{
-    background: #ffeeff;
+    z-index: 333;
+    color:white;
+    background: #5a92c0c2;
     margin:15% auto;
+    text-align: center;
     /* change the padding later */
     padding:2.5rem;
-    border: 1px solid #888;
+    /* border: 1px solid rgb(44, 44, 44); */
     width:80%;
 }
 
 .close{
-    color:#aaa;
+    color:rgb(241, 28, 28);
     float: right;
     font-size:28px;
     font-weight: bold;
